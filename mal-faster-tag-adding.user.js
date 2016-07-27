@@ -58,7 +58,7 @@ $("#tagAdd").click(function(){
 		e.preventDefault();
 		var newTag = $.trim($('input[name="tagAddI"]').val().replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, ""));
 		var tags = newTag.substr(0, 1).toUpperCase() + newTag.substr(1);
-        $('input[name="tagAddI"]').focus();
+		$('input[name="tagAddI"]').focus();
 		if(newTag !== ""){
 			tagArray.push(tags);
 			$("#tagOptions").before('<a class="fTags">' + tagArray[tagArray.length-1] + ',</a>');
@@ -67,6 +67,10 @@ $("#tagAdd").click(function(){
 			localStorage.setItem('tagArray', JSON.stringify(tagArray));
 		}
 	});
+	/*$('#addNewTags').focusout(function(){
+		$("#addNewTags").remove();
+		$("#tagAdd").show();
+	});*/
 });
 /*Remove Tags
 --------------------------------------------------*/

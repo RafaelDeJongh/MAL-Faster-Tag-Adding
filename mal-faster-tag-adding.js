@@ -1,0 +1,74 @@
+// MAL Faster Tag Adding
+// 27/07/2016
+// Rafaël De Jongh
+// Copyright (c) 2016
+// Released under the CREATIVE COMMONS ATTRIBUTION-NONCOMMERCIAL-NODERIVATIVES 4.0 INTERNATIONAL LICENSE.
+// https://creativecommons.org/licenses/by-nc-nd/4.0/
+//
+// --------------------------------------------------
+//
+// ==UserScript==
+// @version		0.1
+// @author		Rafaël De Jongh
+// @namespace	http://www.rafaeldejongh.com
+// @name		MyAnimeList(MAL) - Faster Tag Adding
+// @include		http://myanimelist.net/animelist/*
+// @include		http://myanimelist.net/editlist.php?*
+// @include		http://myanimelist.net/panel.php?*
+// @description	This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
+// ==/UserScript==
+//
+/*Table of content:
+--------------------------------------------------
+- Global Variables
+- Style Overwrites
+- Tag Loop & Options
+- Add Tags
+- Remove Tags
+
+Global Variables
+--------------------------------------------------*/
+var saved = localStorage.getItem('tagArray');
+var tags = 'td textarea[name*="[tags]"]';
+var savedArray = localStorage.getItem('tagArray');
+var tagArray = (localStorage.getItem('tagArray')!==null) ? JSON.parse(savedArray) : [];
+localStorage.setItem('tagArray', JSON.stringify(tagArray));
+/*Style Overwrites
+--------------------------------------------------*/
+$('<style type=\"text/css\">input,textarea,select{outline:none}textarea{width:350px;height:80px;max-width:450px}#fastTagAdding{width:350px;margin-top:6px}.fTags{margin-right:6px;display:inline-block}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}</style>').appendTo("head");
+/*Tag Loop & Options
+--------------------------------------------------*/
+$('<div id="fastTagAdding">').html('<span id="fTag">Tags: </span>').insertAfter(tags);
+$.each(tagArray, function(i){$("#fastTagAdding").append('<a class="fTags">' + tagArray[i] + ',</a>');});
+$("#fastTagAdding").append('<div id="tagOptions"><a id="tagAdd">Add Custom Tag</a> | <a id="tagRemove">Remove Last Tag</a></div>');
+/*Click Functions
+--------------------------------------------------*/
+$(".fTags").live("click", "a.fTags", function() {
+	var txt = $.trim($(this).text());
+	var txtbox = $(tags);
+	txtbox.val(txtbox.val() + txt + " ");
+});
+/*Add Tags
+--------------------------------------------------*/
+$("#tagAdd").click(function(){
+	$(this).hide().after('<div id="addNewTags"><input type="text" name="tagAddI"placeholder="Insert a new tag" autofocus><button id="tagAddB" class="inputButton">Add</button></div>');
+	$("#tagAddB").click(function (e) {
+		e.preventDefault();
+		var newTag = $.trim($('input[name="tagAddI"]').val().replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, ""));
+		var tags = newTag.substr(0, 1).toUpperCase() + newTag.substr(1);
+		if(newTag !== ""){
+			tagArray.push(tags);
+			$("#tagOptions").before('<a class="fTags">' + tagArray[tagArray.length-1] + ',</a>');
+			$("#addNewTags").remove();
+			$("#tagAdd").show();
+			localStorage.setItem('tagArray', JSON.stringify(tagArray));
+		}
+	});
+});
+/*Remove Tags
+--------------------------------------------------*/
+$("#tagRemove").live("click", function(){
+	tagArray.splice(-1, 1);
+	$(".fTags").last().remove();
+	localStorage.setItem('tagArray', JSON.stringify(tagArray));
+});

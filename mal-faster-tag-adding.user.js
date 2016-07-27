@@ -66,7 +66,7 @@ $("#tagAdd").click(function(){
 			localStorage.setItem('tagArray', JSON.stringify(tagArray));
 		}
 	});
-	$('#addNewTags input').focusout(function(){
+	$('input[name="tagAddI"]').focusout(function(){
 		if($(this).val() === ""){
 			$("#addNewTags").remove();
 			$("#tagAdd").show();

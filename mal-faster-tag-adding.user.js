@@ -26,7 +26,6 @@
 - Tag Loop & Options
 - Add Tags
 - Remove Tags
-
 Global Variables
 --------------------------------------------------*/
 var saved = localStorage.getItem('tagArray');
@@ -36,10 +35,10 @@ var tagArray = (localStorage.getItem('tagArray')!==null) ? JSON.parse(savedArray
 localStorage.setItem('tagArray', JSON.stringify(tagArray));
 /*Style Overwrites
 --------------------------------------------------*/
-$('<style type=\"text/css\">input,textarea,select,button{outline:none}textarea{width:350px;height:80px;max-width:450px}#fastTagAdding{width:356px;margin-top:6px}#fastTagAdding a{cursor:pointer}.fTags{display:inline-block}#fastTagAdding span{margin-right:6px;display:inline-block;}#fTag{margin-right:3px!important}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}</style>').appendTo("head");
+$('<style type=\"text/css\">input,textarea,select,button{outline:none}textarea{width:350px;height:80px;max-width:450px}#fastTagAdding{width:356px;margin-top:6px}#fastTagAdding a{cursor:pointer}.fTags{display:inline-block}#fastTagAdding span{margin-right:6px;display:inline-block}#fTag{margin-right:3px!important}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline;margin-right:10px}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}</style>').appendTo("head");
 /*Tag Loop & Options
 --------------------------------------------------*/
-$('<div id="fastTagAdding">').html('<span id="fTag">Tags: </span>').insertAfter(tags);
+$('<div id="fastTagAdding">').html('<span id="fTag">Fast Tags: </span>').insertAfter(tags);
 $.each(tagArray, function(i){$("#fastTagAdding").append('<span class="fTags"><a>' + tagArray[i] + '</a>,</span>');});
 $("#fastTagAdding").append('<div id="tagOptions"><a id="tagAdd">Add Custom Tag</a> | <a id="tagRemove">Remove Last Tag</a></div>');
 /*Click Functions

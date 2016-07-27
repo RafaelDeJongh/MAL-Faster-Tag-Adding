@@ -2,8 +2,8 @@
 // 27/07/2016
 // Rafaël De Jongh
 // Copyright (c) 2016
-// Released under the CREATIVE COMMONS ATTRIBUTION-NONCOMMERCIAL-NODERIVATIVES 4.0 INTERNATIONAL LICENSE.
-// https://creativecommons.org/licenses/by-nc-nd/4.0/
+// This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+// https://creativecommons.org/licenses/by-nc-sa/4.0/
 //
 // --------------------------------------------------
 //

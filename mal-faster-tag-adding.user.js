@@ -8,9 +8,9 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version		1.0
+// @version		1.1
 // @author		Rafaël De Jongh
-// @namespace	http://www.rafaeldejongh.com
+// @namespace		http://www.rafaeldejongh.com
 // @name		My Anime List (MAL) - Faster Tag Adding
 // @include		http://myanimelist.net/ownlist/*
 // @include		http://myanimelist.net/animelist/*

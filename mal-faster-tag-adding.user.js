@@ -53,12 +53,11 @@ $(".fTags").live("click", "a.fTags", function() {
 --------------------------------------------------*/
 $("#tagAdd").click(function(){
 	$(this).hide().after('<div id="addNewTags"><input type="text" name="tagAddI"placeholder="Insert a new tag" autofocus><button id="tagAddB" class="inputButton">Add</button></div>');
-    $('input[name="tagAddI"]').focus();
+	$('input[name="tagAddI"]').focus();
 	$("#tagAddB").click(function (e) {
 		e.preventDefault();
 		var newTag = $.trim($('input[name="tagAddI"]').val().replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, ""));
 		var tags = newTag.substr(0, 1).toUpperCase() + newTag.substr(1);
-		$('input[name="tagAddI"]').focus();
 		if(newTag !== ""){
 			tagArray.push(tags);
 			$("#tagOptions").before('<a class="fTags">' + tagArray[tagArray.length-1] + ',</a>');

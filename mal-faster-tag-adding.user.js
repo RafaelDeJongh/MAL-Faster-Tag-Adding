@@ -8,7 +8,7 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version		1.1
+// @version		1.0
 // @author		Rafaël De Jongh
 // @namespace	http://www.rafaeldejongh.com
 // @name		My Anime List (MAL) - Faster Tag Adding
@@ -47,11 +47,11 @@ $("#fastTagAdding").append('<div id="tagOptions"><a id="tagAdd">Add Custom Tag</
 $(".fTags").live("click", "a.fTags", function() {
 	var txt = $.trim($(this).text());
 	var txtbox = $(tags);
-    if(txtbox.val().slice(-2) === ", " || txtbox.val().slice(-2) === ""){
-        txtbox.val(txtbox.val() + txt + " ");
-    }else{
-        txtbox.val(txtbox.val() + ", " + txt + " ");
-    }
+	if(txtbox.val().slice(-2) === ", " || txtbox.val().slice(-2) === ""){
+		txtbox.val(txtbox.val() + txt + " ");
+	}else{
+		txtbox.val(txtbox.val() + ", " + txt + " ");
+	}
 });
 /*Add Tags
 --------------------------------------------------*/

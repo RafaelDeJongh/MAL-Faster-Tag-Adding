@@ -30,7 +30,7 @@
 Global Variables
 --------------------------------------------------*/
 var saved = localStorage.getItem('tagArray');
-var tags = 'td textarea[name*="[tags]"]';
+var tags = 'textarea[name*="[tags]"]';
 var savedArray = localStorage.getItem('tagArray');
 var tagArray = (localStorage.getItem('tagArray')!==null) ? JSON.parse(savedArray) : [];
 localStorage.setItem('tagArray', JSON.stringify(tagArray));

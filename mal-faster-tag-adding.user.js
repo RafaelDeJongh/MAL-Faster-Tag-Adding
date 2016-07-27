@@ -10,7 +10,7 @@
 // ==UserScript==
 // @version		1.0
 // @author		Rafaël De Jongh
-// @namespace		http://www.rafaeldejongh.com
+// @namespace	http://www.rafaeldejongh.com
 // @name		My Anime List (MAL) - Faster Tag Adding
 // @include		http://myanimelist.net/ownlist/*
 // @include		http://myanimelist.net/animelist/*
@@ -36,7 +36,7 @@ var tagArray = (localStorage.getItem('tagArray')!==null) ? JSON.parse(savedArray
 localStorage.setItem('tagArray', JSON.stringify(tagArray));
 /*Style Overwrites
 --------------------------------------------------*/
-$('<style type=\"text/css\">input,textarea,select{outline:none}textarea{width:350px;height:80px;max-width:450px}#fastTagAdding{width:356px;margin-top:6px}.fTags{margin-right:6px;display:inline-block}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}</style>').appendTo("head");
+$('<style type=\"text/css\">input,textarea,select{outline:none}textarea{width:350px;height:80px;max-width:450px}#fastTagAdding{width:356px;margin-top:6px}#fastTagAdding a{cursor:pointer}.fTags{margin-right:6px;display:inline-block}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}</style>').appendTo("head");
 /*Tag Loop & Options
 --------------------------------------------------*/
 $('<div id="fastTagAdding">').html('<span id="fTag">Tags: </span>').insertAfter(tags);

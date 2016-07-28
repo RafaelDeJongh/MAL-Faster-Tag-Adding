@@ -8,7 +8,7 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version		1.2
+// @version		0.2
 // @author		Rafaël De Jongh
 // @namespace		http://www.rafaeldejongh.com
 // @name		My Anime List (MAL) - Faster Tag Adding

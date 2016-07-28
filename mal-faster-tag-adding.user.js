@@ -89,7 +89,7 @@ $("#tagRemove").live("click", function(){
 });
 /*Show/Hide Checkbox
 --------------------------------------------------*/
-$('#add_anime_rewatch_value').val(1);
+$('#add_anime_rewatch_value, #add_manga_reread_value').val(1);
 $('.advanced td').first().text("Fast Tags").append('<input id="ftcheck" type="checkbox" title="Show/Hide Fast Tags" name="ftcheck">');
 var checkboxChecker = localStorage.getItem("ftcheck");
 if (checkboxChecker !== null){$("#ftcheck").attr("checked","checked");}

@@ -8,7 +8,7 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version		1.1
+// @version		1.2
 // @author		Rafaël De Jongh
 // @namespace		http://www.rafaeldejongh.com
 // @name		My Anime List (MAL) - Faster Tag Adding
@@ -26,6 +26,7 @@
 - Tag Loop & Options
 - Add Tags
 - Remove Tags
+- Show/Hide Checkbox
 Global Variables
 --------------------------------------------------*/
 var saved = localStorage.getItem('tagArray');
@@ -35,10 +36,10 @@ var tagArray = (localStorage.getItem('tagArray')!==null) ? JSON.parse(savedArray
 localStorage.setItem('tagArray', JSON.stringify(tagArray));
 /*Style Overwrites
 --------------------------------------------------*/
-$('<style type=\"text/css\">input,textarea,select,button{outline:none}textarea{width:350px;height:80px;max-width:450px}#fastTagAdding{width:356px;margin-top:6px}#fastTagAdding a{cursor:pointer}.fTags{display:inline-block}#fastTagAdding span{margin-right:6px;display:inline-block}#fTag{margin-right:3px!important}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline;margin-right:10px}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}</style>').appendTo("head");
+$('<style type=\"text/css\">input,textarea,select,button{outline:none}textarea{width:350px;height:80px;max-width:450px}#ftcheck{vertical-align:middle}#fastTagAdding{width:356px;margin-top:6px}#fastTagAdding a{cursor:pointer}.fTags{display:inline-block}#fastTagAdding span{margin-right:6px;display:inline-block}#fTag{margin-right:3px!important}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline;margin-right:10px}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}</style>').appendTo("head");
 /*Tag Loop & Options
 --------------------------------------------------*/
-$('<div id="fastTagAdding">').html('<span id="fTag">Fast Tags: </span>').insertAfter(tags);
+$('<div id="fastTagAdding">').html('<span id="fTag">Tags: </span>').insertAfter(tags);
 $.each(tagArray, function(i){$("#fastTagAdding").append('<span class="fTags"><a>' + tagArray[i] + '</a>,</span>');});
 $("#fastTagAdding").append('<div id="tagOptions"><a id="tagAdd">Add Custom Tag</a> | <a id="tagRemove">Remove Last Tag</a></div>');
 /*Click Functions
@@ -82,4 +83,20 @@ $("#tagRemove").live("click", function(){
 	tagArray.splice(-1, 1);
 	$(".fTags").last().remove();
 	localStorage.setItem('tagArray', JSON.stringify(tagArray));
+});
+/*Show/Hide Checkbox
+--------------------------------------------------*/
+$('#add_anime_rewatch_value').val(1);
+$('.advanced td').first().text("Fast Tags").append('<input id="ftcheck" type="checkbox" title="Show/Hide Fast Tags" name="ftcheck">');
+var checkboxChecker = localStorage.getItem("ftcheck");
+if (checkboxChecker !== null){$("#ftcheck").attr("checked","checked");}
+if($("#ftcheck").is(':checked')){$('#fastTagAdding').show();}else{$('#fastTagAdding').hide();}
+$('#ftcheck').on("click", function(){
+	if($(this).is(':checked')){
+		$('#fastTagAdding').slideDown();
+		localStorage.setItem("ftcheck", $(this).val());
+	}else{
+		$('#fastTagAdding').slideUp();
+		localStorage.removeItem("ftcheck");
+	}
 });

@@ -47,7 +47,7 @@ $("#fastTagAdding").append('<div id="tagOptions"><a id="tagAdd">Add Custom Tag</
 $(".fTags").live("click", "a.fTags", function() {
 	var txt = $.trim($(this).text());
 	var txtbox = $(tags);
-	if(txtbox.val().slice(-2) === ", "  || txtbox.val().slice(-2) === ""){
+	if(txtbox.val().slice(-2) === ", " || txtbox.val().slice(-2) === ""){
 		txtbox.val(txtbox.val() + txt + " ");
 	}else if(txtbox.val().slice(-1) === ","){
 		txtbox.val(txtbox.val() + " " + txt + " ");

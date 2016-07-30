@@ -8,9 +8,10 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version		0.2
+// @version		0.5
 // @author		Rafaël De Jongh
 // @namespace		http://www.rafaeldejongh.com
+// @contributor		Yogensia @ http://www.yogensia.com
 // @name		My Anime List (MAL) - Faster Tag Adding
 // @include		http://myanimelist.net/ownlist/*
 // @include		http://myanimelist.net/animelist/*
@@ -27,10 +28,12 @@
 - Add Tags
 - Remove Tags
 - Show/Hide Checkbox
+
 Global Variables
 --------------------------------------------------*/
 var saved = localStorage.getItem('tagArray');
 var tags = 'textarea[name*="[tags]"]';
+var txtval = $(tags).val();
 var savedArray = localStorage.getItem('tagArray');
 var tagArray = (localStorage.getItem('tagArray')!==null) ? JSON.parse(savedArray) : [];
 localStorage.setItem('tagArray', JSON.stringify(tagArray));
@@ -44,17 +47,27 @@ $.each(tagArray, function(i){$("#fastTagAdding").append('<span class="fTags"><a>
 $("#fastTagAdding").append('<div id="tagOptions"><a id="tagAdd">Add Custom Tag</a> | <a id="tagRemove">Remove Last Tag</a></div>');
 /*Click Functions
 --------------------------------------------------*/
-$(".fTags").live("click", "a.fTags", function() {
+$(".fTags").live("click", ".fTags a", function() {
 	var txt = $.trim($(this).text());
 	var txtbox = $(tags);
-	if(txtbox.val().slice(-2) === ", " || txtbox.val().slice(-2) === ""){
-		txtbox.val(txtbox.val() + txt + " ");
-	}else if(txtbox.val().slice(-1) === ","){
-		txtbox.val(txtbox.val() + " " + txt + " ");
+	var txtval = txtbox.val();
+	if(txtval.slice(-2) === ", " || txtval.slice(-2) === ""){
+		txtbox.val(txtval + txt + " ");
+	}else if(txtval.slice(-1) === ","){
+		txtbox.val(txtval + " " + txt + " ");
 	}else{
-		txtbox.val(txtbox.val() + ", " + txt + " ");
+		txtbox.val(txtval + ", " + txt + " ");
 	}
 	$(this).closest("span").children("a").addClass("disabled");
+});
+$.each(tagArray, function(i){
+	if (txtval.indexOf(tagArray[i]) > -1) {
+		$(".fTags a").each(function(){
+			if($(this).text() == tagArray[i]){
+				$(this).addClass("disabled");
+			}
+		});
+	}
 });
 /*Add Tags
 --------------------------------------------------*/

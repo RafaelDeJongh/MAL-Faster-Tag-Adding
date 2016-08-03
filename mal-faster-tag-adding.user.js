@@ -17,7 +17,7 @@
 // @include		http://myanimelist.net/animelist/*
 // @include		http://myanimelist.net/editlist.php?*
 // @include		http://myanimelist.net/panel.php?*
-// @description	This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
+// @description		This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
 // ==/UserScript==
 //
 /*Table of content:

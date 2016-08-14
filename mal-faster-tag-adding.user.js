@@ -1,5 +1,4 @@
 // MAL Faster Tag Adding
-// 27/07/2016
 // Rafaël De Jongh
 // Copyright (c) 2016
 // This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
@@ -9,15 +8,16 @@
 //
 // ==UserScript==
 // @version		0.5
+// @editdate	14/08/2016
 // @author		Rafaël De Jongh
-// @namespace		http://www.rafaeldejongh.com
-// @contributor		Yogensia @ http://www.yogensia.com
+// @namespace	http://www.rafaeldejongh.com
+// @contributor	Yogensia @ http://www.yogensia.com
 // @name		My Anime List (MAL) - Faster Tag Adding
 // @include		http://myanimelist.net/ownlist/*
 // @include		http://myanimelist.net/animelist/*
 // @include		http://myanimelist.net/editlist.php?*
 // @include		http://myanimelist.net/panel.php?*
-// @description		This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
+// @description	This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
 // ==/UserScript==
 //
 /*Table of content:
@@ -39,7 +39,7 @@ var tagArray = (localStorage.getItem('tagArray')!==null) ? JSON.parse(savedArray
 localStorage.setItem('tagArray', JSON.stringify(tagArray));
 /*Style Overwrites
 --------------------------------------------------*/
-$('<style type=\"text/css\">input,textarea,select,button{outline:none}textarea{width:350px;height:80px;max-width:450px}#ftcheck{vertical-align:middle}#fastTagAdding{width:356px;margin-top:6px}#fastTagAdding a{cursor:pointer}.fTags{display:inline-block}#fastTagAdding span{margin-right:6px;display:inline-block}#fTag{margin-right:3px!important}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline;margin-right:10px}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}.disabled{color:#333!important;text-decoration:line-through!important;cursor:not-allowed!important}</style>').appendTo("head");
+$('<style type=\"text/css\">input,textarea,select,button{outline:none}textarea{width:350px;height:80px;max-width:450px}button::-moz-focus-inner{padding:0;border:0}#ftcheck{vertical-align:middle}#fastTagAdding{width:356px;margin-top:6px}#fastTagAdding a{cursor:pointer}.fTags{display:inline-block}#fastTagAdding span{margin-right:6px;display:inline-block}#fTag{margin-right:3px!important}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline;margin-right:10px}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}.disabled{color:#333!important;text-decoration:line-through!important;cursor:not-allowed!important}</style>').appendTo("head");
 /*Tag Loop & Options
 --------------------------------------------------*/
 $('<div id="fastTagAdding">').html('<span id="fTag">Tags: </span>').insertAfter(tags);

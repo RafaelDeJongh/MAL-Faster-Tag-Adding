@@ -7,11 +7,11 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version		0.5
-// @editdate	14/08/2016
+// @version		0.6
+// @editdate		14/08/2016
 // @author		Rafaël De Jongh
-// @namespace	http://www.rafaeldejongh.com
-// @contributor	Yogensia @ http://www.yogensia.com
+// @namespace		http://www.rafaeldejongh.com
+// @contributor		Yogensia @ http://www.yogensia.com
 // @name		My Anime List (MAL) - Faster Tag Adding
 // @include		http://myanimelist.net/ownlist/*
 // @include		http://myanimelist.net/animelist/*

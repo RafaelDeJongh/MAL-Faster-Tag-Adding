@@ -7,16 +7,16 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version		0.8
-// @editdate	27/08/2016
-// @author		Rafaël De Jongh
-// @namespace	http://www.rafaeldejongh.com
-// @contributor	Yogensia @ http://www.yogensia.com
-// @name		My Anime List (MAL) - Faster Tag Adding
-// @include		*://myanimelist.net/ownlist/*
-// @include		*://myanimelist.net/editlist.php?*
-// @include		*://myanimelist.net/panel.php?*
-// @description	This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
+// @version     0.8
+// @editdate    27/08/2016
+// @author      Rafaël De Jongh
+// @namespace   http://www.rafaeldejongh.com
+// @contributor Yogensia @ http://www.yogensia.com
+// @name        My Anime List (MAL) - Faster Tag Adding
+// @include     *://myanimelist.net/ownlist/*
+// @include     *://myanimelist.net/editlist.php?*
+// @include     *://myanimelist.net/panel.php?*
+// @description This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
 // ==/UserScript==
 //
 /*Table of content:

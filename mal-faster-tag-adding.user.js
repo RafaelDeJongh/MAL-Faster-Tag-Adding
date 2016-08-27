@@ -7,15 +7,15 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version	0.7
-// @editdate	24/08/2016
-// @author	Rafaël De Jongh
+// @version		0.8
+// @editdate	27/08/2016
+// @author		Rafaël De Jongh
 // @namespace	http://www.rafaeldejongh.com
 // @contributor	Yogensia @ http://www.yogensia.com
-// @name	My Anime List (MAL) - Faster Tag Adding
-// @include	*://myanimelist.net/ownlist/*
-// @include	*://myanimelist.net/editlist.php?*
-// @include	*://myanimelist.net/panel.php?*
+// @name		My Anime List (MAL) - Faster Tag Adding
+// @include		*://myanimelist.net/ownlist/*
+// @include		*://myanimelist.net/editlist.php?*
+// @include		*://myanimelist.net/panel.php?*
 // @description	This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
 // ==/UserScript==
 //
@@ -38,7 +38,7 @@ var tagArray = (localStorage.getItem('tagArray')!==null) ? JSON.parse(savedArray
 localStorage.setItem('tagArray', JSON.stringify(tagArray));
 /*Style Overwrites
 --------------------------------------------------*/
-$('<style type=\"text/css\">input,textarea,select,button{outline:none}textarea{width:350px;height:80px;max-width:450px}button::-moz-focus-inner{padding:0;border:0}#ftcheck{vertical-align:middle}#fastTagAdding{width:356px;margin-top:6px}#fastTagAdding a{cursor:pointer}.fTags{display:inline-block}#fastTagAdding span{margin-right:6px;display:inline-block}#fTag{margin-right:3px!important}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline;margin-right:10px}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}.disabled{color:#333!important;text-decoration:line-through!important;cursor:not-allowed!important}</style>').appendTo("head");
+$('<style type=\"text/css\">input,textarea,select,button{outline:none}textarea{width:350px;height:80px;max-width:450px}button::-moz-focus-inner{padding:0;border:0}#ftcheck{vertical-align:middle}#fastTagAdding{width:356px;margin-top:6px;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}#fastTagAdding a{cursor:pointer}.fTags{display:inline-block}#fastTagAdding span{margin-right:6px;display:inline-block}#fTag{margin-right:3px!important}#tagOptions{border-top:solid 1px #bebebe;margin-top:6px;padding-top:6px;min-height:21px}#tagAdd{margin-right:10px}#tagRemove{margin-left:10px}#addNewTags{display:inline;margin-right:10px}input[name="tagAddI"]{width:50%;outline:none;padding-left:3px}#tagAddB{padding:3px}.disabled{color:#333!important;text-decoration:line-through!important;cursor:not-allowed!important}</style>').appendTo("head");
 /*Tag Loop & Options
 --------------------------------------------------*/
 $('<div id="fastTagAdding">').html('<span id="fTag">Tags: </span>').insertAfter(tags);
@@ -63,17 +63,18 @@ $.each(tagArray, function(i){
 	if (txtval.indexOf(tagArray[i]) > -1) {
 		$(".fTags a").each(function(){
 			if($(this).text() == tagArray[i]){
-				$(this).addClass("disabled");
+				$(this).addClass("disabled").attr("disabled","disabled");
 			}
 		});
 	}
 });
+$("a.disabled").live("click", function(){return false;});
 /*Add Tags
 --------------------------------------------------*/
-$("#tagAdd").click(function(){
+$("#tagAdd").on("click", function(){
 	$(this).hide().after('<div id="addNewTags"><input type="text" name="tagAddI"placeholder="Insert a new tag" autofocus><button id="tagAddB" class="inputButton">Add</button></div>');
 	$('input[name="tagAddI"]').focus();
-	$("#tagAddB").click(function (e) {
+	$("#tagAddB").on("click", function (e) {
 		e.preventDefault();
 		var newTag = $.trim($('input[name="tagAddI"]').val().replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, ""));
 		var tags = newTag.substr(0, 1).toUpperCase() + newTag.substr(1);
@@ -94,7 +95,7 @@ $("#tagAdd").click(function(){
 });
 /*Remove Tags
 --------------------------------------------------*/
-$("#tagRemove").live("click", function(){
+$("#tagRemove").on("click", function(){
 	tagArray.splice(-1, 1);
 	$(".fTags").last().remove();
 	localStorage.setItem('tagArray', JSON.stringify(tagArray));

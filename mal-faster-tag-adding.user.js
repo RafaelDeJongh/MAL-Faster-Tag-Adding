@@ -7,16 +7,17 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version     0.8
-// @editdate    27/08/2016
-// @author      Rafaël De Jongh
-// @namespace   http://www.rafaeldejongh.com
-// @contributor Yogensia @ http://www.yogensia.com
-// @name        My Anime List (MAL) - Faster Tag Adding
-// @include     *://myanimelist.net/ownlist/*
-// @include     *://myanimelist.net/editlist.php?*
-// @include     *://myanimelist.net/panel.php?*
-// @description This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
+// @version       1.0
+// @editdate      05/11/2016
+// @author        Rafaël De Jongh
+// @namespace     http://www.rafaeldejongh.com
+// @contributor   Yogensia @ http://www.yogensia.com
+// @name          My Anime List (MAL) - Faster Tag Adding
+// @require       https://code.jquery.com/jquery-3.1.1.min.js
+// @include       *://myanimelist.net/ownlist/*
+// @include       *://myanimelist.net/editlist.php?*
+// @include       *://myanimelist.net/panel.php?*
+// @description   This script adds the option to create commonly used tags that can be inserted in the tag field when editing an entry on My Anime List.
 // ==/UserScript==
 //
 /*Table of content:
@@ -46,32 +47,33 @@ $.each(tagArray, function(i){$("#fastTagAdding").append('<span class="fTags"><a>
 $("#fastTagAdding").append('<div id="tagOptions"><a id="tagAdd">Add Custom Tag</a> | <a id="tagRemove">Remove Last Tag</a></div>');
 /*Click Functions
 --------------------------------------------------*/
-$(".fTags").live("click", ".fTags a", function() {
-	var txt = $.trim($(this).text());
-	var txtbox = $(tags);
-	var txtval = txtbox.val();
-	if(txtval.slice(-2) === ", " || txtval.slice(-2) === ""){
-		txtbox.val(txtval + txt + " ");
-	}else if(txtval.slice(-1) === ","){
-		txtbox.val(txtval + " " + txt + " ");
-	}else{
-		txtbox.val(txtval + ", " + txt + " ");
+$(document).on("click",".fTags a",function(){
+	if(!$(this).hasClass("disabled")){
+		var txt = $.trim($(this).text());
+		var txtbox = $(tags);
+		var txtval = txtbox.val();
+		if(txtval.slice(-2) === ", " || txtval.slice(-2) === ""){
+			txtbox.val(txtval + txt);
+		}else if(txtval.slice(-1) === ","){
+			txtbox.val(txtval + " " + txt);
+		}else{
+			txtbox.val(txtval + ", " + txt);
+		}
+		$(this).closest("span").children("a").addClass("disabled");
 	}
-	$(this).closest("span").children("a").addClass("disabled");
 });
 $.each(tagArray, function(i){
 	if (txtval.indexOf(tagArray[i]) > -1) {
 		$(".fTags a").each(function(){
 			if($(this).text() == tagArray[i]){
-				$(this).addClass("disabled").attr("disabled","disabled");
+				$(this).addClass("disabled");
 			}
 		});
 	}
 });
-$("a.disabled").live("click", function(){return false;});
 /*Add Tags
 --------------------------------------------------*/
-$("#tagAdd").on("click", function(){
+$("#tagAdd").on("click",function(){
 	$(this).hide().after('<div id="addNewTags"><input type="text" name="tagAddI"placeholder="Insert a new tag" autofocus><button id="tagAddB" class="inputButton">Add</button></div>');
 	$('input[name="tagAddI"]').focus();
 	$("#tagAddB").on("click", function (e) {

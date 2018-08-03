@@ -8,9 +8,9 @@
 //
 // ==UserScript==
 // @version       1.0
-// @editdate      05/11/2016
+// @editdate      03/08/2017
 // @author        Rafaël De Jongh
-// @namespace     http://www.rafaeldejongh.com
+// @namespace     https://www.rafaeldejongh.com
 // @contributor   Yogensia @ http://www.yogensia.com
 // @name          My Anime List (MAL) - Faster Tag Adding
 // @require       https://code.jquery.com/jquery-3.1.1.min.js
@@ -28,6 +28,7 @@
 - Add Tags
 - Remove Tags
 - Show/Hide Checkbox
+- Miscellaneous
 
 Global Variables
 --------------------------------------------------*/
@@ -118,3 +119,6 @@ $('#ftcheck').on("click", function(){
 		localStorage.removeItem("ftcheck");
 	}
 });
+/*Miscellaneous
+--------------------------------------------------*/
+$("#add_anime_num_watched_times").attr("type",'number');

@@ -7,11 +7,11 @@
 // --------------------------------------------------
 //
 // ==UserScript==
-// @version       1.0
-// @editdate      03/08/2017
+// @version       1.2
+// @editdate      31/10/2018
 // @author        Rafaël De Jongh
-// @namespace     https://www.rafaeldejongh.com
-// @contributor   Yogensia @ http://www.yogensia.com
+// @namespace     https://www.RafaelDeJongh.com
+// @contributor   Yogensia @ https://www.yogensia.com
 // @name          My Anime List (MAL) - Faster Tag Adding
 // @require       https://code.jquery.com/jquery-3.1.1.min.js
 // @include       *://myanimelist.net/ownlist/*
@@ -28,7 +28,6 @@
 - Add Tags
 - Remove Tags
 - Show/Hide Checkbox
-- Miscellaneous
 
 Global Variables
 --------------------------------------------------*/
@@ -105,7 +104,7 @@ $("#tagRemove").on("click", function(){
 });
 /*Show/Hide Checkbox
 --------------------------------------------------*/
-if($('#add_anime_rewatch_value, #add_manga_reread_value').val() == 0){$('#add_anime_rewatch_value, #add_manga_reread_value').val(1);}
+if($('#add_anime_rewatch_value,#add_manga_reread_value').val() == 0){$('#add_anime_rewatch_value,#add_manga_reread_value').val(1);}
 $('.advanced td').first().text("Fast Tags").append('<input id="ftcheck" type="checkbox" title="Show/Hide Fast Tags" name="ftcheck">');
 var checkboxChecker = localStorage.getItem("ftcheck");
 if (checkboxChecker !== null){$("#ftcheck").attr("checked","checked");}
@@ -119,6 +118,6 @@ $('#ftcheck').on("click", function(){
 		localStorage.removeItem("ftcheck");
 	}
 });
-/*Miscellaneous
+/*Other Adjustements
 --------------------------------------------------*/
-$("#add_anime_num_watched_times").attr("type",'number');
+$("#add_anime_num_watched_times,#add_manga_num_read_times").attr("type",'number');
